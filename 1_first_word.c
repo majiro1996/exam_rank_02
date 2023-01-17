@@ -26,17 +26,27 @@ $> ./first_word '  lorem,ipsum  ' | cat -e
 lorem,ipsum$
 $>
 */
+
 #include <unistd.h>
 
-int main(int argc, char ** args)
+int	main(int argc, char **args)
 {
-	int c;
+	int	c;
 
 	c = 0;
 	if (argc == 2)
 	{
-		while (args[1][c] == '\t' || args[1][c] == ' ' && args[1][c])
+		while (args[1][c] == '\t' || args[1][c] == ' ')
+			c++;
+		while (args[1][c])
+		{
+			if (args[1][c] == '\t' || args[1][c] == ' ' )
+			{
+				write(1, "\n", 1);
+				return (0);
+			}
 			write(1, &args[1][c++], 1);
+		}
 	}
 	write(1, "\n", 1);
 	return (0);
