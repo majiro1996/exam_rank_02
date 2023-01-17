@@ -38,13 +38,8 @@ int	main(int argc, char **args)
 	{
 		while (args[1][c] == '\t' || args[1][c] == ' ')
 			c++;
-		while (args[1][c])
+		while (args[1][c] && args[1][c] != '\t' && args[1][c] != ' ' )
 		{
-			if (args[1][c] == '\t' || args[1][c] == ' ' )
-			{
-				write(1, "\n", 1);
-				return (0);
-			}
 			write(1, &args[1][c++], 1);
 		}
 	}
