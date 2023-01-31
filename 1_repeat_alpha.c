@@ -41,24 +41,26 @@ int	main(int argc, char **argv)
 	{
 		while (argv[1][c])
 		{
+			k = -1;
 			if (argv[1][c] >= 'a' && argv[1][c] <= 'z')
 			{
-				k = -1;
 				while (k < argv[1][c] - 'a')
 				{
 					write (1, &argv[1][c], 1);
 					k++;
 				}
 			}
-			if (argv[1][c] >= 'A' && argv[1][c] <= 'Z')
+			else if (argv[1][c] >= 'A' && argv[1][c] <= 'Z')
 			{
-				k = -1;
+
 				while (k < argv[1][c] - 'A')
 				{
 					write (1, &argv[1][c], 1);
 					k++;
 				}
 			}
+			else
+				write (1, &argv[1][c], 1);
 			c++;
 		}
 	}
