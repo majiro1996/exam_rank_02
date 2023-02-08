@@ -22,7 +22,7 @@ DESCRIPTION
 
 RETURN VALUES
      The strspn() and strcspn() functions return the number of characters spanned.*/
-#include <stdio.h>
+#include <stdio.h> //size_t
 
 size_t	ft_strcspn(const char *s, const char *reject)
 {
