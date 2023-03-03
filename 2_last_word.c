@@ -26,25 +26,30 @@ $>*/
 
 #include <unistd.h>
 
-int	main(int argc, char **argv)
+void	print_last(char *str)
 {
 	int	c;
+	int	last;
 
 	c = 0;
+	while (str[c])
+	{
+		if (str[c] == ' ' && str[c + 1] != ' ' && str[c + 1] != '\0')
+			last = c + 1;
+		c++;
+	}
+	while (str[last] && str[last] > ' ')
+	{
+		write(1, &str[last], 1);
+		last++;
+	}
+}
+
+int	main(int argc, char **argv)
+{
 	if (argc == 2)
 	{
-		while (argv[1][c])
-			c++;
-		while ((argv[1][c] == ' ' || argv[1][c] == '\t') && c > 0)
-			c--;
-		while ((argv[1][c] != ' ' || argv[1][c] != '\t') && c > 0)
-			c--;
-		c++;
-		while (argv[1][c] && (argv[1][c] != ' ' || argv[1][c] != '\t'))
-		{
-			write(1, &argv[1][c], 1);
-			c++;
-		}
+		print_last(argv[1]);
 	}
 	write(1, "\n", 1);
 	return (0);

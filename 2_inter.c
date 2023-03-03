@@ -50,7 +50,6 @@ int	main(int argc, char **argv)
 			while (argv[2][k])
 			{
 				if ((argv[1][c] == argv[2][k]) && !(no_dup(argv[1], argv[1][c], c)))
-
 				{
 					write(1, &argv[1][c], 1);
 					break ;
