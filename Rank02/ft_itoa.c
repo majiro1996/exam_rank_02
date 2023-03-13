@@ -1,18 +1,16 @@
 #include <stdlib.h>
-#include <stdio.h>
 
-int n_len(int nbr)
+long ft_nbrlen(int nbr)
 {
-	int c = 0;
-
+	long c = 0;
 	if (nbr < 0)
 	{
-		nbr *= -1;
 		c++;
+		nbr *= -1;
 	}
 	if (nbr == 0)
 		return(1);
-	while(nbr)
+	while (nbr)
 	{
 		nbr /= 10;
 		c++;
@@ -22,34 +20,46 @@ int n_len(int nbr)
 
 char *ft_itoa(int nbr)
 {
-	int len;
-	char *str;
-	len = n_len(nbr);
-	str = malloc(sizeof(char) * len);
-	if (!str)
-		return (NULL);
-	str[len] = '\0';
+	long len = ft_nbrlen(nbr);
+	char *result;
+	result = malloc(sizeof(char) * len);
+	if(!result)
+		return(NULL);
+	result[len] = '\0';
 	len--;
-	if (nbr == 0)
+	if(nbr == 0)
 	{
-		str[0] = '0';
+		result[0] = '0';
+		return(result);
 	}
-	if (nbr < 0)
+	if(nbr < 0)
 	{
-		str[0] = '-';
+		if(nbr == -2147483648)
+		{
+			result = "-2147483648";
+			return (result);
+		}
+		result[0] = '-';
 		nbr *= -1;
 	}
-	while(nbr)
+	while(len >= 0 && nbr)
 	{
-		str[len] = nbr % 10 + '0';
-		nbr /= 10;
+		result[len] = (nbr % 10) + '0';
+		nbr = nbr / 10;
 		len--;
 	}
-	return (str);
+	return(result);
 }
-		
+
+#include <limits.h>
+#include <stdio.h>
 
 int main(void)
 {
-	printf("%s", ft_itoa(-42));
+	printf("%s\n", ft_itoa(INT_MAX));
+	printf("%s\n", ft_itoa(INT_MIN));
+	printf("%s\n", ft_itoa(+83));
+	printf("%s\n", ft_itoa(0));
+	printf("%s\n", ft_itoa(75744));
+	printf("%s\n", ft_itoa(1));
 }
