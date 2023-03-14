@@ -2,11 +2,10 @@
 
 unsigned int    lcm(unsigned int a, unsigned int b)
 {
-	int result = 1;
-	int c = 1;
+	unsigned int c = 1;
 	if (!a || !b)
 		return(0);
-	while(result < a || result < b)
+	while(1)
 	{
 		if(c  % a == 0 && c % b == 0)
 			return(c);
