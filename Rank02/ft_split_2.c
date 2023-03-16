@@ -1,4 +1,3 @@
-
 #include <stdlib.h>
 
 int is_space(char a)
@@ -8,10 +7,10 @@ int is_space(char a)
 	return(0);
 }
 
-char *fill(char *s)
+char *fill(char *s, int **ptr_c)
 {
 	char *result;
-	static int c;
+	int  c = **ptr_c;
 	int len = 0;
 	int k = 0;
 	while(is_space(s[c]))
@@ -33,6 +32,7 @@ char *fill(char *s)
 		c++;
 	}
 	c++;
+	**ptr_c = c;
 	return (result);
 }
 
@@ -52,9 +52,11 @@ char    **ft_split(char *str)
 	if(!m)
 		return(NULL);
 	m[wc + 1]=NULL;
+	c = 0;
+	int *ptr_c = &c;
 	while(current <= wc)
 	{
-		m[current] = fill(str);
+		m[current] = fill(str, &ptr_c);
 		current++;
 	}
 	return (m);
@@ -76,4 +78,3 @@ int	main(void)
 	}
 	return (0);
 }
-
