@@ -20,6 +20,7 @@ long ft_nbrlen(int nbr)
 
 char *ft_itoa(int nbr)
 {
+	long lnaux;
 	long len = ft_nbrlen(nbr);
 	char *result;
 	result = malloc(sizeof(char) * len);
@@ -32,20 +33,16 @@ char *ft_itoa(int nbr)
 		result[0] = '0';
 		return(result);
 	}
+	lnaux = nbr;
 	if(nbr < 0)
 	{
-		if(nbr == -2147483648)
-		{
-			result = "-2147483648";
-			return (result);
-		}
 		result[0] = '-';
-		nbr *= -1;
+		lnaux *= nbr * -1;
 	}
-	while(len >= 0 && nbr)
+	while(len >= 0 && lnaux)
 	{
-		result[len] = (nbr % 10) + '0';
-		nbr = nbr / 10;
+		result[len] = (lnaux % 10) + '0';
+		lnaux = lnaux / 10;
 		len--;
 	}
 	return(result);
