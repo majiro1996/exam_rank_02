@@ -31,7 +31,7 @@ char *fill(char *s, int *c_ptr)
         k++;
         c++;
     }
-    *c_ptr = c;
+    c++;
     return (result);
 }
 
